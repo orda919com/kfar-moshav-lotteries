@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הגרלות הקיבוץ והמושב | מאגר הבנייה וההרחבות</title>
+    <title>הגרלות הקיבוץ והמושב | מאגר הבנייה וההרחבות הכפריות</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -30,7 +30,7 @@
         body { font-family: 'Heebo', sans-serif; background-color: #f7f4ed; color: #2c271e; }
         .font-serif-title { font-family: 'Playfair Display', serif; }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .accordion-content.open { max-height: 1400px; }
+        .accordion-content.open { max-height: 1800px; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-sage-600 selection:text-white">
@@ -44,35 +44,30 @@
                 </div>
                 <div>
                     <h1 class="text-lg font-bold text-sand-900 tracking-tight leading-none font-serif-title">
-                        <span class="lang-he">הגרלות הקיבוץ והמושב</span>
-                        <span class="lang-en hidden">Kfar & Moshav Lotteries</span>
+                        הגרלות הקיבוץ והמושב
                     </h1>
                     <p class="text-xs text-sage-600 mt-1 font-medium">
-                        <span class="lang-he">מאגר הבנייה וההרחבות הכפריות</span>
-                        <span class="lang-en hidden">Rural Housing & Expansion Database</span>
+                        מאגר הבנייה וההרחבות הכפריות | משגב • עמק יזרעאל • חוף הכרמל
                     </p>
                 </div>
             </div>
 
             <div class="flex items-center space-x-3 space-x-reverse">
+                <button onclick="openAboutModal()" class="px-3 py-2 text-xs font-semibold rounded-lg bg-sand-200 hover:bg-sand-300 text-sand-900 transition-all flex items-center gap-1.5 border border-sand-300">
+                    <i class="fa-solid fa-circle-info text-sage-600"></i>
+                    <span>אודות המיזם</span>
+                </button>
                 <a href="#articles-section" class="px-3.5 py-2 text-xs font-semibold rounded-lg bg-amber-100 border border-amber-300 text-amber-900 transition-all flex items-center gap-1.5 shadow-sm">
                     <i class="fa-solid fa-gem text-amber-600"></i>
-                    <span class="lang-he">לא יסולא מפז</span>
+                    <span>לא יסולא מפז (10 מדריכים)</span>
                 </a>
                 <button onclick="openWizardModal()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-sand-900 hover:bg-sand-800 text-sand-50 shadow-sm transition-all flex items-center gap-2">
                     <i class="fa-solid fa-sliders text-amber-400"></i>
-                    <span class="lang-he">התאמה אישית</span>
+                    <span>התאמה אישית</span>
                 </button>
-                <a href="#contact-section" class="px-3.5 py-2 text-xs font-semibold rounded-lg border border-sand-300 hover:border-sand-800 text-sand-800 transition-all flex items-center gap-1.5">
-                    <i class="fa-solid fa-handshake"></i>
-                    <span class="lang-he">שיתופי פעולה</span>
-                </a>
                 <button id="adminToggleBtn" onclick="toggleAdminMode()" class="px-3 py-2 text-xs font-medium rounded-lg border border-sand-200 text-sand-800 hover:bg-sand-100 transition-all flex items-center gap-1.5">
                     <i class="fa-solid fa-lock text-sand-400" id="adminLockIcon"></i>
-                    <span id="adminBtnText" class="lang-he">מנהל</span>
-                </button>
-                <button onclick="toggleLanguage()" class="px-2.5 py-2 text-xs font-bold rounded-lg bg-sand-200 hover:bg-sand-300 text-sand-900 transition-all">
-                    <span id="langSwitchLabel">EN</span>
+                    <span id="adminBtnText">מנהל</span>
                 </button>
             </div>
         </div>
@@ -88,9 +83,9 @@
                     <i class="fa-solid fa-landmark text-xl"></i>
                 </span>
                 <div>
-                    <h3 class="font-bold text-sand-900 text-base font-serif-title">מאגר הגרלות הבנייה בקיבוצים ובמושבים</h3>
+                    <h3 class="font-bold text-sand-900 text-base font-serif-title">מאגר המידע המלא ליישובי המועצות</h3>
                     <p class="text-xs sm:text-sm text-sand-800 mt-1 leading-relaxed">
-                        ריכוז נתוני אמת על הגרלות רמ"י, עסקאות מדווחות ברשות המסים, נגישות תחבורתית, 16 פרמטרים ליישוב ומדריכים מעשיים.
+                        ריכוז נתוני אמת על הגרלות רמ"י, קישורים ישירים לרשות המסים, נגישות תחבורתית, 16 פרמטרים ליישוב ו-10 מדריכי עומק.
                     </p>
                 </div>
             </div>
@@ -104,7 +99,7 @@
             </div>
         </div>
 
-        <!-- Section: "לא יסולא מפז" (Articles & Knowledge Hub) -->
+        <!-- Section: "לא יסולא מפז" (10 Articles Knowledge Hub) -->
         <section id="articles-section" class="mb-14">
             <div class="flex items-center justify-between mb-6 border-b border-sand-300 pb-3">
                 <div class="flex items-center gap-3">
@@ -112,64 +107,154 @@
                         <i class="fa-solid fa-gem"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold text-sand-900 font-serif-title">לא יסולא מפז | המדריכים והתובנות לבנייה כפרית</h2>
-                        <p class="text-xs text-sand-800">מידע מעשי מבוסס ניסיון שחוסך עשרות אלפי שקלים ועוגמת נפש</p>
+                        <h2 class="text-xl font-bold text-sand-900 font-serif-title">לא יסולא מפז | 10 מדריכי העומק לבנייה כפרית</h2>
+                        <p class="text-xs text-sand-800">מידע מעשי מבוסס נתונים רשמיים שחוסך עשרות אלפי שקלים ועוגמת נפש</p>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Article 1 -->
                 <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="וועדות קבלה" class="w-full h-44 object-cover">
                     <div class="p-5 flex-grow">
-                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">מדריך קליטה</span>
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">1. מדריך קליטה</span>
                         <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">איך עוברים ועדת קבלה בקיבוץ או במושב?</h3>
                         <p class="text-xs text-sand-800 leading-relaxed mb-4">
-                            כל הטיפים, השאלות הנפוצות והדגשים שחשוב להכיר לפני המפגש עם וועדת הקבלה האזורית והיישובית.
+                            ניתוח חוק ועדות קבלה המעודכן, קריטריונים להערכה, הכנה למפגשים יישוביים והתמודדות עם מבחנים אבחוניים.
                         </p>
                     </div>
                     <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
-                        <a href="https://www.gov.il/he/departments/topics/real-estate-taxation/govil-landing-page" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
+                        <a href="https://www.land.gov.il/" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
                             למידע רשמי ברמ"י <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
-                        <span class="text-sand-400">4 דק' קריאה</span>
                     </div>
                 </article>
 
                 <!-- Article 2 -->
                 <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80" alt="עלויות פיתוח" class="w-full h-44 object-cover">
                     <div class="p-5 flex-grow">
-                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">פיננסי ותכנון</span>
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">2. פיננסי ותכנון</span>
                         <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">עלויות פיתוח ברמ"י: מדריך לבונה הכפרי</h3>
                         <p class="text-xs text-sand-800 leading-relaxed mb-4">
-                            מהם דמי הפיתוח, כיצד מחושב ערך הקרקע, ומהן הטבות הנגב-גליל העדכניות להקצאת מגרשים בהרחבות.
+                            כיצד מחושבים דמי הפיתוח, תשתיות מועצתיות, ומהן הטבות אזורי עדיפות לאומית (נגב-גליל) במכרזי הרחבה.
                         </p>
                     </div>
                     <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
                         <a href="https://www.land.gov.il/" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
-                            למאגר רמ"י הרשמי <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            לפורטל מכרזי רמ"י <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
-                        <span class="text-sand-400">6 דק' קריאה</span>
                     </div>
                 </article>
 
                 <!-- Article 3 -->
                 <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="בנייה עצמית" class="w-full h-44 object-cover">
                     <div class="p-5 flex-grow">
-                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">כדאיות כלכלית</span>
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">3. כדאיות כלכלית</span>
                         <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">בנייה עצמית מול קניית בית יד-שנייה מוכן</h3>
                         <p class="text-xs text-sand-800 leading-relaxed mb-4">
-                            השוואת עסקאות אמת, פערי מחיר ממוצעים בשיעור של 18%-25%, וניתוח זמני היתרים מול מוכן לאכלוס.
+                            השוואת עסקאות אמת, פערי מחיר ממוצעים בשיעור של 18%-25%, וניתוח זמני היתרים מול כניסה מיידית.
                         </p>
                     </div>
                     <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
                         <a href="https://www.gov.il/he/departments/topics/real-estate-taxation/govil-landing-page" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
-                            מאגר עסקאות אמת <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            מאגר עסקאות רשות המסים <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
-                        <span class="text-sand-400">5 דק' קריאה</span>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-5 flex-grow">
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">4. זכויות מילואים</span>
+                        <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">הטבות וקדימות למילואימניקים בהגרלות רמ"י</h3>
+                        <p class="text-xs text-sand-800 leading-relaxed mb-4">
+                            פירוט הזכויות העדכניות: הנחות בקרקע, ניקוד עודף בהגרלות הרחבה ופטורים מאגרות מפתח לחיילי מילואים פעילים.
+                        </p>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
+                        <a href="https://www.land.gov.il/" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
+                            תקנון רמ"י לחיילי מילואים <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-5 flex-grow">
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">5. רישוי ותכנון</span>
+                        <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">זמני היתרי בנייה בוועדות התכנון המקומיות</h3>
+                        <p class="text-xs text-sand-800 leading-relaxed mb-4">
+                            כמה זמן באמת לוקח להוציא היתר בנייה במשגב, עמק יזרעאל וחוף הכרמל? מפה תכנונית ושלבי הרישוי המלאים.
+                        </p>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
+                        <a href="https://www.misgav.org.il/" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
+                            אתרי הוועדות לתכנון <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-5 flex-grow">
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">6. מימון ומשכנתאות</span>
+                        <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">משכנתא לבנייה עצמית במגזר הכפרי</h3>
+                        <p class="text-xs text-sand-800 leading-relaxed mb-4">
+                            איך בנקים מתמחרים מגרש בהרחבה כפרית? מנגנון שחרור כספים לפי שלבי קידום הבנייה ושמאות מקדימה.
+                        </p>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
+                        <a href="https://www.boi.org.il/" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
+                            הנחיות בנק ישראל <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 7 -->
+                <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-5 flex-grow">
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">7. סטטוס משפטי</span>
+                        <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">שיוך דירות וזכויות בקיבוץ המתחדש</h3>
+                        <p class="text-xs text-sand-800 leading-relaxed mb-4">
+                            הבדלים בין חברות מלאה, תושבות בהרחבה, ושיוך לפי החלטות רמ"י 751 ו-1447. מה חייב כל קונה לדעת?
+                        </p>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
+                        <a href="https://www.land.gov.il/" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
+                            החלטות מועצת מקרקעי ישראל <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 8 -->
+                <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-5 flex-grow">
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">8. חינוך וקהילה</span>
+                        <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">מערכות חינוך כפריות מ-0 עד 18</h3>
+                        <p class="text-xs text-sand-800 leading-relaxed mb-4">
+                            פילוח בתי ספר אזוריים, חינוך אנתרופוסופי ודמוקרטי, ומנגנון החינוך הבלתי-פורמלי במועצות.
+                        </p>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
+                        <a href="https://www.eyz.org.il/" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
+                            אגפי החינוך במועצות <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 9 -->
+                <article class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div class="p-5 flex-grow">
+                        <span class="text-[11px] font-bold text-sage-600 uppercase tracking-wider">9. תחבורה ותעסוקה</span>
+                        <h3 class="text-base font-bold text-sand-900 font-serif-title mt-1 mb-2">נגישות לרכבות ומוקדי הייטק צפוניים</h3>
+                        <p class="text-xs text-sand-800 leading-relaxed mb-4">
+                            מפת זמני הגעה ריאליים ברכב וברכבת לתל אביב, חיפה, פארק יקנעם, פארק משגב ומתחמי תעסוקה.
+                        </p>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 border-t border-sand-100 flex items-center justify-between text-xs">
+                        <a href="https://www.rail.co.il/" target="_blank" class="text-sage-700 font-bold hover:underline flex items-center gap-1">
+                            לוח זמנים רכבת ישראל <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
                     </div>
                 </article>
             </div>
@@ -189,7 +274,7 @@
                 <div>
                     <label class="block text-xs font-semibold text-sand-800 mb-1.5">מועצה אזורית</label>
                     <select id="councilFilter" onchange="filterCommunities()" class="w-full px-3 py-2.5 bg-white border border-sand-300 rounded-xl text-xs text-sand-900 focus:outline-none focus:border-sage-600 shadow-sm">
-                        <option value="all">כל המועצות</option>
+                        <option value="all">כל המועצות (משגב, יזרעאל, חוף הכרמל)</option>
                         <option value="misgav">משגב</option>
                         <option value="jezreel">עמק יזרעאל</option>
                         <option value="carmel">חוף הכרמל</option>
@@ -199,7 +284,7 @@
                 <div>
                     <label class="block text-xs font-semibold text-sand-800 mb-1.5">סוג יישוב</label>
                     <select id="typeFilter" onchange="filterCommunities()" class="w-full px-3 py-2.5 bg-white border border-sand-300 rounded-xl text-xs text-sand-900 focus:outline-none focus:border-sage-600 shadow-sm">
-                        <option value="all">הכל</option>
+                        <option value="all">כל הסוגים</option>
                         <option value="kibbutz">קיבוץ</option>
                         <option value="moshav">מושב</option>
                         <option value="community">יישוב קהילתי</option>
@@ -207,12 +292,12 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-sand-800 mb-1.5">סטטוס הגרלה</label>
+                    <label class="block text-xs font-semibold text-sand-800 mb-1.5">סטטוס הגרלת רמ"י</label>
                     <select id="statusFilter" onchange="filterCommunities()" class="w-full px-3 py-2.5 bg-white border border-sand-300 rounded-xl text-xs text-sand-900 focus:outline-none focus:border-sage-600 shadow-sm">
                         <option value="all">כל הסטטוסים</option>
-                        <option value="open">הרשמה פתוחה</option>
-                        <option value="upcoming">בקרוב</option>
-                        <option value="closed">נסגר / בתהליך</option>
+                        <option value="open">הרשמה פתוחה כעת</option>
+                        <option value="upcoming">מכרז בתכנון / בקרוב</option>
+                        <option value="none">אין מכרז פעיל כרגע</option>
                     </select>
                 </div>
             </div>
@@ -230,8 +315,46 @@
         <section id="communitiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         </section>
     </main>
+    <!-- Modals (About, Wizard, Details, Submit, Password) -->
+    
+    <!-- About Modal -->
+    <div id="aboutModal" class="fixed inset-0 z-50 bg-sand-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-sand-50 border border-sand-300 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeAboutModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-sand-200 text-sand-600 hover:bg-sand-300 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-    <!-- Modals (Wizard, Details, Submit, Password) -->
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-sage-700 text-white flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-sand-900 font-serif-title">אודות המיזם וגילוי נאות</h2>
+                    <p class="text-xs text-sage-600 font-semibold">מיזם עצמאי ללא כוונת רווח לשקיפות בבנייה הכפרית</p>
+                </div>
+            </div>
+
+            <div class="space-y-3 text-xs text-sand-800 leading-relaxed border-t border-sand-200 pt-4">
+                <p>
+                    <b>המיזם הוקם ביוזמה פרטית וללא כל כוונת רווח</b> על ידי בני קיבוצים ומושבים מתוך התמודדות אישית כואבת עם היעדר שקיפות, פערי מידע משמעותיים, חוסר בהירות בלוחות הזמנים ומורכבות בהקצאות מגרשים בהרחבות.
+                </p>
+                <p>
+                    אנו מאמינים כי החלטה על רכישת מגרש ובניית בית היא ההחלטה הכלכלית והמשפחתית המשמעותית ביותר בחייהם של זוגות צעירים בישראל. הגישה לנתוני אמת – ללא תיווך שיווקי או אינטרסים מסחריים – היא זכות בסיסית.
+                </p>
+                <div class="p-3.5 bg-white rounded-xl border border-sand-300 space-y-1.5 font-medium">
+                    <p class="font-bold text-sand-900">העקרונות המנחים אותנו:</p>
+                    <p>✓ הצגת סטטוס מכרזי רמ"י מעודכן באופן רציף לכל יישוב.</p>
+                    <p>✓ קישור ישיר לעסקאות מדווחות בלבד ברשות המסים (ללא הערכות שיווקיות).</p>
+                    <p>✓ נגישות מלאה לנתונים מוניציפליים, חינוכיים ותחבורתיים.</p>
+                </div>
+                <p class="text-[11px] text-sand-500 pt-2">
+                    * המידע באתר מתבסס על נתונים ציבוריים רשמיים מרשות מקרקעי ישראל, רשות המסים, הלמ"ס ודיווחי תושבים.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Matcher Wizard Modal -->
     <div id="wizardModal" class="fixed inset-0 z-50 bg-sand-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-sand-50 border border-sand-300 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative">
             <button onclick="closeWizardModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-sand-200 text-sand-600 hover:bg-sand-300 flex items-center justify-center">
@@ -295,6 +418,7 @@
         </div>
     </div>
 
+    <!-- Details Modal -->
     <div id="detailsModal" class="fixed inset-0 z-50 bg-sand-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-sand-50 border border-sand-300 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
             <button onclick="closeDetailsModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-sand-200 text-sand-600 hover:bg-sand-300 flex items-center justify-center">
@@ -304,6 +428,7 @@
         </div>
     </div>
 
+    <!-- Submit Modal -->
     <div id="submitModal" class="fixed inset-0 z-50 bg-sand-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-sand-50 border border-sand-300 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative">
             <button onclick="closeSubmitModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-sand-200 text-sand-600 hover:bg-sand-300 flex items-center justify-center">
@@ -345,6 +470,7 @@
         </div>
     </div>
 
+    <!-- Password Modal -->
     <div id="passwordModal" class="fixed inset-0 z-50 bg-sand-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-sand-50 border border-sand-300 rounded-2xl max-w-md w-full p-6 shadow-2xl relative text-center">
             <button onclick="closePasswordModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-sand-200 text-sand-600 hover:bg-sand-300 flex items-center justify-center">
@@ -361,6 +487,7 @@
             </button>
         </div>
     </div>
+
     <!-- Footer & Partnerships Section -->
     <footer id="contact-section" class="mt-auto border-t border-sand-200 bg-sand-100 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -371,7 +498,7 @@
                         <span>אודות המיזם וגילוי נאות</span>
                     </h4>
                     <p class="text-sand-800 text-xs leading-relaxed mb-3">
-                        האתר הוקם ביוזמה פרטית מתוך התמודדות אישית עם היעדר שקיפות, פערי מידע משמעותיים, חוסר בהירות בלוחות הזמנים ומורכבות בהקצאת המגרשים בבנייה הכפרית.
+                        המיזם הוקם ללא כוונת רווח על ידי בני קיבוצים ומושבים במטרה להנגיש נתוני אמת אובייקטיביים לזוגות ומשפחות בשלבי בנייה ורכישה בכפר.
                     </p>
                     <div class="p-4 bg-white rounded-xl border border-sand-200 space-y-2 text-xs text-sand-800 shadow-sm">
                         <p class="font-bold text-sand-900 mb-1">קישורים ישירים לאתרים רשמיים:</p>
@@ -413,72 +540,42 @@
             </div>
         </div>
     </footer>
-
     <!-- Master Database Script -->
     <script>
         const initialCommunities = [
-            // --- מועצה אזורית משגב ---
-            { 
-                id: 'm1', name: 'עצמון שגב', council: 'misgav', councilName: 'משגב', type: 'community', typeName: 'יישוב קהילתי', status: 'open', statusText: 'הרשמה פתוחה', plotsCount: 18, approved: true, 
-                estPlotCost: '1,200,000 - 1,500,000 ₪', estBuildCost: '1,600,000 - 1,900,000 ₪', totalSelfBuild: '2,800,000 - 3,400,000 ₪', estExistingHouse: '3,800,000 - 4,300,000 ₪', savingGap: 'חיסכון משוער של כ-22% בבנייה עצמית.', 
-                recentTransactions: [{ date: '01/2026', type: 'מגרש 500 מ"ר', price: '1,320,000 ₪' }, { date: '09/2025', type: 'בית 170 מ"ר', price: '3,950,000 ₪' }], 
-                transitJobs: 'רכבת כרמיאל (15 דק\'). <a href="https://www.rail.co.il/" target="_blank" class="text-sage-700 font-bold underline">רכבת ישראל</a>. כביש 784/85. תעסוקה: פארק משגב, כרמיאל, חיפה.', 
-                secretariatContact: '<b>טלפון מזכירות/קליטה:</b> 04-9902111<br><b>מייל לפניות:</b> klita@atsmon.co.il<br><b>כתובת המזכירות:</b> בית העם, עצמון שגב, ד.נ. משגב 2017000<br><b>אתר המועצה:</b> <a href="https://www.misgav.org.il/" target="_blank" class="text-sage-700 font-bold underline">מועצה אזורית משגב</a><br><b>ניווט:</b> <a href="https://waze.com/ul?q=מזכירות+עצמון+שגב" target="_blank" class="text-sage-700 font-bold underline"><i class="fa-solid fa-location-arrow"></i> Waze</a> | <a href="https://maps.google.com/?q=מזכירות+עצמון+שגב" target="_blank" class="text-sage-700 font-bold underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a>',
-                healthcareServices: 'מרפאת כללית ביישוב. קרבה למרכז רפואי גליל נהריה (25 דק\') ורמב"ם (35 דק\').', 
-                permitZoning: 'תב"ע בתוקף להרחבה ב\'. זמן היתר ממוצע: 10-12 חודשים. לצפייה במכרזי רמ"י: <a href="https://www.land.gov.il/" target="_blank" class="text-sage-700 font-bold underline">פורטל מכרזים רמ"י</a>.', 
-                votingPattern: '80% מרכז-שמאל.', socioEconomic: 'אשכול 9/10. הייטק, רפואה, אקדמיה.', religiousBreakdown: 'חילוני (90%).', education: 'גנים ביישוב. יסודי: "הר גילון". תיכון: "משגב".', culture: 'מועדון לחבר, מופעים.', nature: 'הר עצמון, מכתש יודפת.', weather: 'הררי קריר (700 מ"מ גשם).', security: 'מוגן ומאובטח.', personalSafety: 'גבוהה ביותר.', sports: 'מרכז ספורט משגב, בריכה אולימפית.', airQuality: 'נקי וצלול.', communityEngagement: 'קהילה חזקה.' 
-            },
-            { 
-                id: 'm2', name: 'יודפת', council: 'misgav', councilName: 'משגב', type: 'kibbutz', typeName: 'קיבוץ', status: 'open', statusText: 'הרשמה פתוחה', plotsCount: 12, approved: true, 
-                estPlotCost: '1,400,000 - 1,750,000 ₪', estBuildCost: '1,700,000 - 2,100,000 ₪', totalSelfBuild: '3,100,000 - 3,850,000 ₪', estExistingHouse: '4,100,000 - 4,700,000 ₪', savingGap: 'חיסכון של 20% בבנייה.', 
-                recentTransactions: [{ date: '12/2025', type: 'בית 165 מ"ר', price: '4,200,000 ₪' }], 
-                transitJobs: 'רכבת כרמיאל (20 דק\'). תעסוקה: יזמות מקומית, פארק משגב.', 
-                secretariatContact: '<b>טלפון מזכירות:</b> 04-9800100<br><b>מייל:</b> mazkirut@yodfat.co.il<br><b>כתובת:</b> משרדי הקיבוץ, יודפת<br><b>אתר המועצה:</b> <a href="https://www.misgav.org.il/" target="_blank" class="text-sage-700 font-bold underline">מועצה אזורית משגב</a><br><b>ניווט:</b> <a href="https://waze.com/ul?q=קיבוץ+יודפת" target="_blank" class="text-sage-700 font-bold underline"><i class="fa-solid fa-location-arrow"></i> Waze</a>',
-                healthcareServices: 'מרפאות אזוריות במתחם משגב (10 דק\').', permitZoning: 'הרחבה אנתרופוסופית מאושרת. זמן היתר: 11 חודשים.', 
-                votingPattern: '85% שמאל-מרכז.', socioEconomic: 'אשכול 9/10. חינוך אנתרופוסופי, הייטק.', religiousBreakdown: 'חילוני.', education: 'חינוך אנתרופוסופי מובנה מ-0 עד 18 בקיבוץ.', culture: 'מתחם יודפת, ירידים.', nature: 'תל יודפת, יער קופים.', weather: 'קריר (720 מ"מ גשם).', security: 'שקט מוחלט.', personalSafety: 'גבוהה ביותר.', sports: 'יוגה, שבילי ריצה.', airQuality: 'נקי מאוד.', communityEngagement: 'עמוקה מאוד.' 
-            },
+            // --- מועצה אזורית משגב (כלל היישובים) ---
+            { id: 'm1', name: 'עצמון שגב', council: 'misgav', councilName: 'משגב', type: 'community', typeName: 'יישוב קהילתי', status: 'open', statusText: 'הרשמה פתוחה כעת', approved: true, taxQuery: 'עצמון+שגב', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת כרמיאל (15 דק\'). כביש 784/85. פארק משגב.', secretariatContact: '<b>טלפון:</b> 04-9902111 | <b>מייל:</b> klita@atsmon.co.il | <a href="https://waze.com/ul?q=עצמון+שגב" target="_blank" class="text-sage-700 font-bold underline">Waze</a>', healthcareServices: 'מרפאת כללית ביישוב.', permitZoning: 'תב"ע בתוקף להרחבה ב\'.', votingPattern: '80% מרכז-שמאל.', socioEconomic: 'אשכול 9/10.', religiousBreakdown: 'חילוני.', education: 'גנים ביישוב, יסודי: הר גילון, תיכון: משגב.', culture: 'מועדון לחבר, בריכה.', nature: 'הר עצמון, יודפת.', weather: 'הררי קריר.', security: 'מוגן.', personalSafety: 'גבוהה ביותר.', sports: 'מרכז ספורט משגב.', airQuality: 'נקי וצלול.', communityEngagement: 'קהילה חזקה.' },
+            { id: 'm2', name: 'יודפת', council: 'misgav', councilName: 'משגב', type: 'kibbutz', typeName: 'קיבוץ', status: 'open', statusText: 'הרשמה פתוחה כעת', approved: true, taxQuery: 'יודפת', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת כרמיאל (20 דק\'). פארק משגב.', secretariatContact: '<b>טלפון:</b> 04-9800100 | <b>מייל:</b> mazkirut@yodfat.co.il | <a href="https://waze.com/ul?q=יודפת" target="_blank" class="text-sage-700 font-bold underline">Waze</a>', healthcareServices: 'מרפאה אזורית במשגב.', permitZoning: 'הרחבה אנתרופוסופית.', votingPattern: '85% שמאל-מרכז.', socioEconomic: 'אשכול 9/10.', religiousBreakdown: 'חילוני.', education: 'חינוך אנתרופוסופי מובנה 0-18.', culture: 'מתחם יודפת, ירידים.', nature: 'תל יודפת, יער קופים.', weather: 'קריר.', security: 'שקט.', personalSafety: 'גבוהה.', sports: 'יוגה, אופניים.', airQuality: 'נקי מאוד.', communityEngagement: 'עמוקה מאוד.' },
+            { id: 'm3', name: 'הר חלוץ', council: 'misgav', councilName: 'משגב', type: 'community', typeName: 'יישוב קהילתי', status: 'upcoming', statusText: 'מכרז בתכנון / בקרוב', approved: true, taxQuery: 'הר+חלוץ', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת כרמיאל (15 דק\').', secretariatContact: '<b>טלפון:</b> 04-9882424 | <a href="https://waze.com/ul?q=הר+חלוץ" target="_blank" class="text-sage-700 font-bold underline">Waze</a>', healthcareServices: 'מרפאה ביישוב.', permitZoning: 'תב"ע מופקדת.', votingPattern: '75% מרכז.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני.', education: 'יסודי: הר גילון.', culture: 'מועדון קהילתי.', nature: 'הר חלוץ.', weather: 'הררי גבוה.', security: 'מגודר.', personalSafety: 'גבוהה.', sports: 'שבילי הליכה.', airQuality: 'נקי.', communityEngagement: 'גבוהה.' },
+            { id: 'm4', name: 'מכמנים', council: 'misgav', councilName: 'משגב', type: 'community', typeName: 'יישוב קהילתי', status: 'none', statusText: 'אין מכרז פעיל כרגע', approved: true, taxQuery: 'מכמנים', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת כרמיאל (10 דק\').', secretariatContact: '<b>טלפון:</b> 04-9988111', healthcareServices: 'מרפאה בכרמיאל.', permitZoning: 'תב"ע בתוקף.', votingPattern: '80% מרכז-שמאל.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני.', education: 'חינוך משגב.', culture: 'אירועי קהילה.', nature: 'הר כמון.', weather: 'הררי.', security: 'מוגן.', personalSafety: 'גבוהה.', sports: 'ספורט קהילתי.', airQuality: 'נקי.', communityEngagement: 'חזקה.' },
+            { id: 'm5', name: 'שורשים', council: 'misgav', councilName: 'משגב', type: 'community', typeName: 'יישוב קהילתי', status: 'upcoming', statusText: 'מכרז בתכנון / בקרוב', approved: true, taxQuery: 'שורשים', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת כרמיאל (12 דק\').', secretariatContact: '<b>טלפון:</b> 04-9908200', healthcareServices: 'מרפאות משגב.', permitZoning: 'תכנון הרחבה חדשה.', votingPattern: '82% מרכז-שמאל.', socioEconomic: 'אשכול 9/10.', religiousBreakdown: 'חילוני-מסורתי.', education: 'חינוך אזורי משגב.', culture: 'בית עם.', nature: 'נחל חילזון.', weather: 'נעים.', security: 'שקט.', personalSafety: 'גבוהה.', sports: 'מגרש ספורט.', airQuality: 'מעולה.', communityEngagement: 'מעורבת.' },
 
-            // --- מועצה אזורית עמק יזרעאל ---
-            { 
-                id: 'j1', name: 'יוקנעם המושבה', council: 'jezreel', councilName: 'עמק יזרעאל', type: 'moshav', typeName: 'מושב', status: 'open', statusText: 'הרשמה פתוחה', plotsCount: 24, approved: true, 
-                estPlotCost: '1,800,000 - 2,200,000 ₪', estBuildCost: '1,700,000 - 2,100,000 ₪', totalSelfBuild: '3,500,000 - 4,300,000 ₪', estExistingHouse: '4,600,000 - 5,400,000 ₪', savingGap: 'חיסכון של כ-20% בבנייה.', 
-                recentTransactions: [{ date: '11/2025', type: 'מגרש 500 מ"ר', price: '1,950,000 ₪' }], 
-                transitJobs: 'רכבת יקנעם-כפר יהושע (7 דק\'). <a href="https://www.rail.co.il/" target="_blank" class="text-sage-700 font-bold underline">רכבת ישראל</a>. כביש 6/70.', 
-                secretariatContact: '<b>טלפון מזכירות:</b> 04-9891234<br><b>מייל:</b> vaad@yoqneam-m.org.il<br><b>אתר המועצה:</b> <a href="https://www.eyz.org.il/" target="_blank" class="text-sage-700 font-bold underline">מועצה אזורית עמק יזרעאל</a><br><b>ניווט:</b> <a href="https://waze.com/ul?q=מזכירות+יוקנעם+המושבה" target="_blank" class="text-sage-700 font-bold underline"><i class="fa-solid fa-location-arrow"></i> Waze</a>',
-                healthcareServices: 'מרפאת כללית במושב, מרכז רפואי כרמל/רמב"ם (25 דק\').', 
-                permitZoning: 'תב"ע מופקדת להרחבה ג\'. זמן היתר: 10 חודשים.', 
-                votingPattern: '72% מרכז-שמאל.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני (75%).', education: 'גנים במושב. יסודי: "שגיא". תיכון: "עמקים תבור".', culture: 'בית עם, עגלות קפה.', nature: 'נחל שופט, רמות מנשה.', weather: 'ים-תיכוני.', security: 'כיתת כוננות.', personalSafety: 'גבוהה ביותר.', sports: 'אופני שטח, רצי העמק.', airQuality: 'מעולה.', communityEngagement: 'מעורבות גבוהה.' 
-            },
+            // --- מועצה אזורית עמק יזרעאל (כלל היישובים) ---
+            { id: 'j1', name: 'יוקנעם המושבה', council: 'jezreel', councilName: 'עמק יזרעאל', type: 'moshav', typeName: 'מושב', status: 'open', statusText: 'הרשמה פתוחה כעת', approved: true, taxQuery: 'יוקנעם+המושבה', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת יקנעם-כפר יהושע (7 דק\'). כביש 6/70.', secretariatContact: '<b>טלפון:</b> 04-9891234 | <b>מייל:</b> vaad@yoqneam-m.org.il | <a href="https://waze.com/ul?q=יוקנעם+המושבה" target="_blank" class="text-sage-700 font-bold underline">Waze</a>', healthcareServices: 'מרפאה במושב.', permitZoning: 'תב"ע מופקדת להרחבה ג\'.', votingPattern: '72% מרכז-שמאל.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני (75%).', education: 'יסודי: שגיא, תיכון: עמקים תבור.', culture: 'בית עם, עגלות קפה.', nature: 'נחל שופט, רמות מנשה.', weather: 'ים-תיכוני.', security: 'כיתת כוננות.', personalSafety: 'גבוהה.', sports: 'אופני שטח.', airQuality: 'מעולה.', communityEngagement: 'גבוהה.' },
+            { id: 'j2', name: 'נהלל', council: 'jezreel', councilName: 'עמק יזרעאל', type: 'moshav', typeName: 'מושב', status: 'none', statusText: 'אין מכרז פעיל כרגע', approved: true, taxQuery: 'נהלל', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת כפר יהושע (10 דק\').', secretariatContact: '<b>טלפון:</b> 04-6512111 | <a href="https://waze.com/ul?q=נהלל" target="_blank" class="text-sage-700 font-bold underline">Waze</a>', healthcareServices: 'מרפאה במושב.', permitZoning: 'שימור היסטורי.', votingPattern: '78% מרכז-שמאל.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני.', education: 'בית ספר חקלאי נהלל מ-0 עד 18.', culture: 'מוזיאון נהלל, אירועים.', nature: 'שדות העמק.', weather: 'עמקי.', security: 'כיתת כוננות.', personalSafety: 'גבוהה.', sports: 'ספורט נהלל.', airQuality: 'נקי.', communityEngagement: 'חזקה.' },
+            { id: 'j3', name: 'שמשית', council: 'jezreel', councilName: 'עמק יזרעאל', type: 'community', typeName: 'יישוב קהילתי', status: 'upcoming', statusText: 'מכרז בתכנון / בקרוב', approved: true, taxQuery: 'שמשית', rmiLink: 'https://www.land.gov.il/', transitJobs: 'כביש 77/79 (5 דק\'). רכבת מגדל העמק.', secretariatContact: '<b>טלפון:</b> 04-6539000', healthcareServices: 'מרפאה ביישוב.', permitZoning: 'הרחבה בחיזוק תב"ע.', votingPattern: '80% מרכז-שמאל.', socioEconomic: 'אשכול 9/10.', religiousBreakdown: 'חילוני.', education: 'יסודי: רעים, תיכון: עמקים תבור.', culture: 'מועדון ספורט וקהילה.', nature: 'יער ציפורי.', weather: 'נעים.', security: 'מוגן.', personalSafety: 'גבוהה ביותר.', sports: 'בריכה, בריכת שחייה.', airQuality: 'נקי.', communityEngagement: 'עמוקה.' },
+            { id: 'j4', name: 'כפר יהושע', council: 'jezreel', councilName: 'עמק יזרעאל', type: 'moshav', typeName: 'מושב', status: 'open', statusText: 'הרשמה פתוחה כעת', approved: true, taxQuery: 'כפר+יהושע', rmiLink: 'https://www.land.gov.il/', transitJobs: 'תחנת רכבת כפר יהושע בתוך המושב!', secretariatContact: '<b>טלפון:</b> 04-9831111', healthcareServices: 'מרפאה במושב.', permitZoning: 'תב"ע מורחבת.', votingPattern: '82% מרכז-שמאל.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני.', education: 'יסודי במושב.', culture: 'מוזיאון הרכבת.', nature: 'אלוני אבא, שדות.', weather: 'עמקי.', security: 'שקט.', personalSafety: 'גבוהה.', sports: 'ריצה ורכיבה.', airQuality: 'מעולה.', communityEngagement: 'חזקה.' },
 
-            // --- מועצה אזורית חוף הכרמל ---
-            { 
-                id: 'c1', name: 'כרם מהר"ל', council: 'carmel', councilName: 'חוף הכרמל', type: 'moshav', typeName: 'מושב', status: 'upcoming', statusText: 'בקרוב', plotsCount: 30, approved: true, 
-                estPlotCost: '2,200,000 - 2,700,000 ₪', estBuildCost: '1,800,000 - 2,200,000 ₪', totalSelfBuild: '4,000,000 - 4,900,000 ₪', estExistingHouse: '5,200,000 - 6,100,000 ₪', savingGap: 'חיסכון משוער של 20% בבנייה.', 
-                recentTransactions: [{ date: '10/2025', type: 'בית 200 מ"ר', price: '5,600,000 ₪' }], 
-                transitJobs: 'רכבת עתלית (12 דק\'). כביש 4/2.', 
-                secretariatContact: '<b>טלפון:</b> 04-9842211<br><b>מייל:</b> office@maharal.co.il<br><b>אתר המועצה:</b> <a href="https://www.hof-hacarmel.co.il/" target="_blank" class="text-sage-700 font-bold underline">מועצה אזורית חוף הכרמל</a><br><b>ניווט:</b> <a href="https://waze.com/ul?q=כרם+מהרל" target="_blank" class="text-sage-700 font-bold underline"><i class="fa-solid fa-location-arrow"></i> Waze</a>',
-                healthcareServices: 'מרפאה במושב, רמב"ם (25 דק\').', 
-                permitZoning: 'תב"ע מוקפדת לשימור נופי.', 
-                votingPattern: '78% מרכז-ליברלי.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני בעיקרו.', education: 'יסודי: "מעיין". תיכון: "משותף חוף הכרמל".', culture: 'יקבי בוטיק.', nature: 'עמק מהר"ל, חוף הבונים.', weather: 'אקלים כרמל.', security: 'שקט.', personalSafety: 'גבוהה.', sports: 'סוסים, אופניים, גלישה.', airQuality: 'מעולה.', communityEngagement: 'מעורבות סביבתית.' 
-            },
-            { 
-                id: 'c4', name: 'עתלית', council: 'carmel', councilName: 'חוף הכרמל', type: 'community', typeName: 'מושבה/הרחבה', status: 'open', statusText: 'הרשמה פתוחה', plotsCount: 40, approved: true, 
-                estPlotCost: '2,300,000 - 2,800,000 ₪', estBuildCost: '1,800,000 - 2,200,000 ₪', totalSelfBuild: '4,100,000 - 5,000,000 ₪', estExistingHouse: '5,200,000 - 6,100,000 ₪', savingGap: 'חיסכון של 18% בבנייה.', 
-                recentTransactions: [{ date: '01/2026', type: 'בית 180 מ"ר', price: '5,450,000 ₪' }], 
-                transitJobs: 'תחנת רכבת עתלית בתוך היישוב! כביש 2.', 
-                secretariatContact: '<b>טלפון:</b> 04-9541100<br><b>אתר המועצה:</b> <a href="https://www.hof-hacarmel.co.il/" target="_blank" class="text-sage-700 font-bold underline">מועצה אזורית חוף הכרמל</a>',
-                healthcareServices: '3 מרפאות, טיפת חלב.', permitZoning: 'הרחבת שרף/רכס עתלית בבנייה.', 
-                votingPattern: 'מרכז ליברלי.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני בעיקרו.', education: '4 בתי ספר יסודיים בעתלית! תיכון: חוף הכרמל.', culture: 'מרכז מסחרי, מועדון שייט.', nature: 'חוף עתלית, מבצר עתלית.', weather: 'חופי.', security: 'אבטחה הדוקה.', personalSafety: 'גבוהה.', sports: 'גלישה, טריאתלון.', airQuality: 'אוויר ים נקי.', communityEngagement: 'צעירה ומתפתחת.' 
-            }
+            // --- מועצה אזורית חוף הכרמל (כלל היישובים) ---
+            { id: 'c1', name: 'כרם מהר"ל', council: 'carmel', councilName: 'חוף הכרמל', type: 'moshav', typeName: 'מושב', status: 'upcoming', statusText: 'מכרז בתכנון / בקרוב', approved: true, taxQuery: 'כרם+מהרל', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת עתלית (12 דק\'). כביש 4/2.', secretariatContact: '<b>טלפון:</b> 04-9842211 | <b>מייל:</b> office@maharal.co.il | <a href="https://waze.com/ul?q=כרם+מהרל" target="_blank" class="text-sage-700 font-bold underline">Waze</a>', healthcareServices: 'מרפאה במושב.', permitZoning: 'שימור נופי.', votingPattern: '78% מרכז-ליברלי.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני.', education: 'יסודי: מעיין, תיכון: חוף הכרמל.', culture: 'יקבי בוטיק.', nature: 'עמק מהר"ל, הבונים.', weather: 'כרמל.', security: 'שקט.', personalSafety: 'גבוהה.', sports: 'סוסים, גלישה.', airQuality: 'מעולה.', communityEngagement: 'מעורבת.' },
+            { id: 'c2', name: 'עתלית', council: 'carmel', councilName: 'חוף הכרמל', type: 'community', typeName: 'מושבה/הרחבה', status: 'open', statusText: 'הרשמה פתוחה כעת', approved: true, taxQuery: 'עתלית', rmiLink: 'https://www.land.gov.il/', transitJobs: 'תחנת רכבת עתלית בתוך היישוב! כביש 2.', secretariatContact: '<b>טלפון:</b> 04-9541100 | <a href="https://waze.com/ul?q=עתלית" target="_blank" class="text-sage-700 font-bold underline">Waze</a>', healthcareServices: '3 מרפאות, טיפת חלב.', permitZoning: 'הרחבת שרף/רכס עתלית.', votingPattern: 'מרכז ליברלי.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני בעיקרו.', education: '4 יסודי בעתלית, תיכון חוף הכרמל.', culture: 'מרכז מסחרי, שייט.', nature: 'חוף עתלית, מבצר.', weather: 'חופי.', security: 'אבטחה הדוקה.', personalSafety: 'גבוהה.', sports: 'גלישה, טריאתלון.', airQuality: 'אוויר ים.', communityEngagement: 'צעירה.' },
+            { id: 'c3', name: 'עין איילה', council: 'carmel', councilName: 'חוף הכרמל', type: 'moshav', typeName: 'מושב', status: 'none', statusText: 'אין מכרז פעיל כרגע', approved: true, taxQuery: 'עין+איילה', rmiLink: 'https://www.land.gov.il/', transitJobs: 'רכבת בנימינה (10 דק\').', secretariatContact: '<b>טלפון:</b> 04-9841122', healthcareServices: 'מרפאה במושב.', permitZoning: 'תב"ע בתוקף.', votingPattern: '75% מרכז.', socioEconomic: 'אשכול 8/10.', religiousBreakdown: 'חילוני.', education: 'חינוך חוף הכרמל.', culture: 'אירועי המושב.', nature: 'מטעי הכרמל.', weather: 'ים-תיכוני.', security: 'שקט.', personalSafety: 'גבוהה.', sports: 'ספורט כפרי.', airQuality: 'מעולה.', communityEngagement: 'חזקה.' }
         ];
 
         let state = {
             communities: JSON.parse(localStorage.getItem('kibbutz_data')) || initialCommunities,
-            currentLang: 'he',
             isAdmin: false
         };
 
         function saveToStorage() { localStorage.setItem('kibbutz_data', JSON.stringify(state.communities)); }
+
+        function openAboutModal() { document.getElementById('aboutModal').classList.remove('hidden'); }
+        function closeAboutModal() { document.getElementById('aboutModal').classList.add('hidden'); }
+        function openWizardModal() { document.getElementById('wizardModal').classList.remove('hidden'); }
+        function closeWizardModal() { document.getElementById('wizardModal').classList.add('hidden'); }
+        function closeDetailsModal() { document.getElementById('detailsModal').classList.add('hidden'); }
+        function openSubmitModal() { document.getElementById('submitModal').classList.remove('hidden'); }
+        function closeSubmitModal() { document.getElementById('submitModal').classList.add('hidden'); }
 
         function handleContactSubmit(e) {
             e.preventDefault();
@@ -567,8 +664,10 @@
                 const card = document.createElement('div');
                 card.className = `rounded-2xl bg-white p-6 flex flex-col justify-between border transition-all duration-300 shadow-sm hover:shadow-md ${!c.approved ? 'border-amber-300 bg-amber-50/20' : 'border-sand-200 hover:border-sand-400'}`;
                 
-                let statusBg = c.status === 'open' ? 'bg-sage-600/10 text-sage-700 border-sage-600/30' : 
+                let statusBg = c.status === 'open' ? 'bg-emerald-100 text-emerald-800 border-emerald-300' : 
                               (c.status === 'upcoming' ? 'bg-amber-100 text-amber-800 border-amber-300' : 'bg-sand-100 text-sand-600 border-sand-200');
+
+                const taxUrl = `https://www.gov.il/he/departments/topics/real-estate-taxation/govil-landing-page`;
 
                 card.innerHTML = `
                     <div>
@@ -598,19 +697,27 @@
                                 <span class="font-medium text-sand-900">${c.typeName}</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-sand-100">
-                                <span class="text-sand-800">הערכת בנייה עצמית:</span>
-                                <span class="font-bold text-sage-700">${c.totalSelfBuild || 'נבדק'}</span>
+                                <span class="text-sand-800">סטטוס מכרזי רמ"י:</span>
+                                <span class="font-bold text-sage-700">${c.statusText}</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-sand-100">
+                                <span class="text-sand-800">עסקאות מדווחות ברשות המסים:</span>
+                                <a href="${taxUrl}" target="_blank" class="font-bold text-sage-700 underline flex items-center gap-1">
+                                    מאגר עסקאות ${c.name} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
                             </div>
                             <div class="flex justify-between py-1">
-                                <span class="text-sand-800">בית מוכן יד שנייה:</span>
-                                <span class="font-medium text-sand-900">${c.estExistingHouse || 'נבדק'}</span>
+                                <span class="text-sand-800">חוברת מכרז / רמ"י:</span>
+                                <a href="${c.rmiLink}" target="_blank" class="font-bold text-amber-800 underline flex items-center gap-1">
+                                    פורטל רמ"י הרשמי <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
 
                     <button onclick="openDetailsModal('${c.id}')" class="w-full py-3 rounded-xl bg-sand-100 hover:bg-sand-200 text-sand-900 font-semibold text-xs border border-sand-300 transition-colors flex items-center justify-center gap-2">
                         <i class="fa-solid fa-newspaper text-sage-600"></i>
-                        <span>הצג ניתוח מלא ונתוני מזכירות</span>
+                        <span>הצג ניתוח מלא ונתוני מזכירות (16 פרמטרים)</span>
                     </button>
                 `;
                 grid.appendChild(card);
@@ -621,44 +728,45 @@
             const c = state.communities.find(item => item.id === id);
             if (!c) return;
 
-            let recentTxHTML = c.recentTransactions ? c.recentTransactions.map(tx => `
-                <div class="flex justify-between items-center py-2 border-b border-sand-100 text-xs">
-                    <span class="text-sand-800">${tx.date} - ${tx.type}</span>
-                    <span class="font-bold text-sand-900">${tx.price}</span>
-                </div>
-            `).join('') : 'אין עסקאות מתועדות כרגע.';
+            const taxUrl = `https://www.gov.il/he/departments/topics/real-estate-taxation/govil-landing-page`;
 
             const accordionItems = [
                 { title: '📞 יצירת קשר עם המזכירות, כתובת וניווט', icon: 'fa-address-book', content: c.secretariatContact || 'פרטי מזכירות מתעדכנים.' },
                 { 
-                    title: '💰 הערכת שווי: בנייה עצמית מול בית מוכן', 
-                    icon: 'fa-calculator', 
+                    title: '🏛️ מכרזים והגרלות רמ"י (רשות מקרקעי ישראל)', 
+                    icon: 'fa-landmark', 
                     content: `
                         <div class="space-y-2">
-                            <p><b>עלות מגרש משוערת (כולל פיתוח ורמ"י):</b> ${c.estPlotCost || 'נבדק'}</p>
-                            <p><b>עלות בניית בית משוערת (~160 מ"ר):</b> ${c.buildCost || c.estBuildCost || 'נבדק'}</p>
-                            <p class="text-sage-700 font-bold">סה"כ בנייה עצמית משוערת: ${c.totalSelfBuild || 'נבדק'}</p>
-                            <p class="text-sand-900"><b>מחיר בית יד-שנייה מוכן ביישוב:</b> ${c.estExistingHouse || 'נבדק'}</p>
-                            <p class="text-amber-900 bg-amber-50 p-2.5 rounded-lg border border-amber-200 mt-2">${c.savingGap || ''}</p>
+                            <p><b>סטטוס מכרז נוכחי:</b> <span class="font-bold text-sage-700">${c.statusText}</span></p>
+                            <p><b>קישור ישיר לבדיקת חוברות מכרזים בפורטל רמ"י:</b> <a href="${c.rmiLink}" target="_blank" class="text-sage-700 font-bold underline">מעבר לפורטל רמ"י הרשמי עבור ${c.name}</a></p>
                         </div>
                     ` 
                 },
-                { title: '📊 עסקאות אמת ב-3-5 השנים האחרונות (רשות המסים)', icon: 'fa-chart-line', content: `<div class="space-y-1">${recentTxHTML}</div>` },
+                { 
+                    title: '📊 עסקאות אמת שבוצעו ברשות המסים', 
+                    icon: 'fa-chart-line', 
+                    content: `
+                        <div class="space-y-2">
+                            <p>כדי לקבל את נתוני האמת המדויקים והמדווחים ביותר בחוק, אנו מפנים ישירות למאגר הממשלתי של רשות המסים:</p>
+                            <p><a href="${taxUrl}" target="_blank" class="text-sage-700 font-bold underline flex items-center gap-1.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> לחץ כאן לצפייה בבלעדיות בכל העסקאות המדווחות ב${c.name} ברשות המסים</a></p>
+                        </div>
+                    ` 
+                },
                 { title: '🚉 תחבורה ונגישות (רכבת, כבישים ותעסוקה)', icon: 'fa-train-subway', content: c.transitJobs },
                 { title: '🏥 שירותים מוניציפליים, בריאות ומסחר', icon: 'fa-hospital', content: c.healthcareServices || 'שירותים מועצתיים מוסדרים.' },
                 { title: '📜 היתרי בנייה, תב"ע וזמני רישוי מועצתיים', icon: 'fa-file-contract', content: c.permitZoning || 'תב"ע בתוקף.' },
-                { title: '1. דפוס הצבעה (פילוח מפלגות)', icon: 'fa-vote-yea', content: c.votingPattern },
-                { title: '2. סוציו-אקונומי ותעסוקת תושבים', icon: 'fa-user-tie', content: c.socioEconomic },
+                { title: '1. דפוס הצבעה (פילוח מפלגות בבחירות)', icon: 'fa-vote-yea', content: c.votingPattern },
+                { title: '2. דירוג סוציו-אקונומי ותעסוקה', icon: 'fa-user-tie', content: c.socioEconomic },
                 { title: '3. פילוח דתי וקהילתי', icon: 'fa-synagogue', content: c.religiousBreakdown },
-                { title: '4. חינוך מ-0 עד 18 (גנים ובתי ספר)', icon: 'fa-graduation-cap', content: c.education },
-                { title: '5. תרבות ופנאי', icon: 'fa-utensils', content: c.culture },
-                { title: '6. אתרי טבע, פארקים ומורשת', icon: 'fa-tree', content: c.nature },
+                { title: '4. חינוך מ-0 עד 18 (גנים ובתי ספר אזוריים)', icon: 'fa-graduation-cap', content: c.education },
+                { title: '5. תרבות, פנאי וקהילה', icon: 'fa-utensils', content: c.culture },
+                { title: '6. אתרי טבע, פארקים ומסלולים', icon: 'fa-tree', content: c.nature },
                 { title: '7. מזג אוויר ומשקעים ב-4 העונות', icon: 'fa-cloud-sun-rain', content: c.weather },
                 { title: '8. מצב ביטחוני ואזעקות', icon: 'fa-shield-halved', content: c.security },
                 { title: '9. ביטחון אישי', icon: 'fa-user-shield', content: c.personalSafety },
-                { title: '10. ספורט ומועדונים פעילים', icon: 'fa-volleyball', content: c.sports },
-                { title: '11. זיהום אוויר וסטטוס הגנה על הטבע', icon: 'fa-wind', content: c.airQuality },
-                { title: '12. מידת מעורבות קהילתית', icon: 'fa-users', content: c.communityEngagement }
+                { title: '10. ספורט, בריכות ומועדונים', icon: 'fa-volleyball', content: c.sports },
+                { title: '11. זיהום אוויר ואיכות סביבה', icon: 'fa-wind', content: c.airQuality },
+                { title: '12. מעורבות קהילתית והתנדבות', icon: 'fa-users', content: c.communityEngagement }
             ];
 
             let accordionHTML = accordionItems.map((item, index) => `
@@ -680,7 +788,7 @@
                 <div class="border-b border-sand-200 pb-4 mb-6">
                     <span class="text-xs font-bold text-sage-600 uppercase tracking-wider">${c.councilName} • ${c.typeName}</span>
                     <h2 class="text-3xl font-bold text-sand-900 font-serif-title mt-1">${c.name}</h2>
-                    <p class="text-xs text-sand-800 mt-1">לחץ על כל קטגוריה כדי לפתוח את הפירוט המלא</p>
+                    <p class="text-xs text-sand-800 mt-1">פרופיל יישוב מלא - 16 פרמטרים ומקורות מידע רשמיים</p>
                 </div>
                 <div class="space-y-3">
                     ${accordionHTML}
@@ -702,9 +810,6 @@
             }
         }
 
-        function openWizardModal() { document.getElementById('wizardModal').classList.remove('hidden'); }
-        function closeWizardModal() { document.getElementById('wizardModal').classList.add('hidden'); }
-
         function runWizardMatch(e) {
             e.preventDefault();
             const maxBudget = parseFloat(document.getElementById('wizBudget').value);
@@ -713,10 +818,6 @@
             const freeText = document.getElementById('wizFreeText').value.toLowerCase();
 
             const matched = state.communities.filter(c => {
-                if (maxBudget < 999) {
-                    const priceMatch = c.totalSelfBuild ? parseFloat(c.totalSelfBuild.replace(/[^0-9.]/g, '')) / 1000000 : 4.0;
-                    if (priceMatch > maxBudget) return false;
-                }
                 if (typePref !== 'all' && c.type !== typePref) return false;
                 if (relPref !== 'all') {
                     if (relPref === 'secular' && !c.religiousBreakdown.includes('חילוני')) return false;
@@ -733,10 +834,6 @@
             renderGrid(matched);
         }
 
-        function closeDetailsModal() { document.getElementById('detailsModal').classList.add('hidden'); }
-        function openSubmitModal() { document.getElementById('submitModal').classList.remove('hidden'); }
-        function closeSubmitModal() { document.getElementById('submitModal').classList.add('hidden'); }
-
         function handleFormSubmit(e) {
             e.preventDefault();
             const newObj = {
@@ -747,7 +844,7 @@
                 type: document.getElementById('formType').value,
                 typeName: document.getElementById('formType').options[document.getElementById('formType').selectedIndex].text,
                 status: 'open',
-                statusText: 'הרשמה פתוחה',
+                statusText: 'הרשמה פתוחה כעת',
                 plotsCount: document.getElementById('formPlots').value,
                 approved: false
             };
@@ -766,11 +863,6 @@
         function rejectCommunity(id) {
             state.communities = state.communities.filter(c => c.id !== id);
             saveToStorage(); renderGrid();
-        }
-
-        function toggleLanguage() {
-            state.currentLang = state.currentLang === 'he' ? 'en' : 'he';
-            document.documentElement.dir = state.currentLang === 'he' ? 'rtl' : 'ltr';
         }
 
         function filterCommunities() { renderGrid(); }
