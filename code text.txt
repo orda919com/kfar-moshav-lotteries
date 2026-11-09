@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מאגר הגרלות ובנייה בקהילות כפריות | משגב, עמק יזרעאל, חוף הכרמל</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Rubik & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            500: '#10b981',
+                            600: '#059669',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Rubik', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Rubik', sans-serif; }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-border {
+            border-image: linear-gradient(to bottom right, #10b981, #f59e0b) 1;
+        }
+        /* LTR overrides when EN is active */
+        html[dir="ltr"] body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-emerald-500/20">
+                    <i class="fa-solid font-bold fa-dharmachakra"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-100 tracking-tight leading-none">
+                        <span class="lang-he">מאגר הגרלות ובנייה במגזר הכפרי</span>
+                        <span class="lang-en hidden">Rural Housing & Lottery Database</span>
+                    </h1>
+                    <p class="text-xs text-emerald-400 mt-1 font-medium">
+                        <span class="lang-he">משגב • עמק יזרעאל • חוף הכרמל</span>
+                        <span class="lang-en hidden">Misgav • Jezreel Valley • Hof HaCarmel</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Header Controls -->
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <!-- Admin Toggle Button -->
+                <button id="adminToggleBtn" onclick="toggleAdminMode()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 text-slate-300 border border-slate-700 hover:border-emerald-500 transition-all duration-200 flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-amber-400"></i>
+                    <span id="adminBtnText" class="lang-he">מצב מנהל (כבוי)</span>
+                    <span id="adminBtnTextEn" class="lang-en hidden">Admin Mode (Off)</span>
+                </button>
+
+                <!-- Language Toggle Button -->
+                <button onclick="toggleLanguage()" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-950 text-emerald-400 border border-emerald-800/80 hover:bg-emerald-900 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="langSwitchLabel">EN</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Banner Alert / Announcement -->
+        <div class="mb-8 p-4 rounded-2xl bg-gradient-to-r from-emerald-950/80 via-slate-900 to-slate-900 border border-emerald-500/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <i class="fa-solid fa-bullhorn text-lg"></i>
+                </span>
+                <div>
+                    <h3 class="font-bold text-emerald-300 text-sm sm:text-base">
+                        <span class="lang-he">פורטל השקיפות הקהילתי להרחבות והגרלות</span>
+                        <span class="lang-en hidden">Community Transparency Portal for Housing Lotteries</span>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300">
+                        <span class="lang-he">כל הנתונים על קליטה, הגרלות רמ"י, חינוך, ביטחון וקהילה במקום אחד.</span>
+                        <span class="lang-en hidden">Complete data on lotteries, education, security, and community profiles.</span>
+                    </p>
+                </div>
+            </div>
+            <button onclick="openSubmitModal()" class="w-full md:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/20 transition-all duration-200 whitespace-nowrap">
+                <i class="fa-solid fa-plus-circle ml-1"></i>
+                <span class="lang-he">דיווח / הוספת הגרלה</span>
+                <span class="lang-en hidden">Report / Submit Lottery</span>
+            </button>
+        </div>
+
+        <!-- Filters Section -->
+        <section class="mb-8 p-6 rounded-2xl glass-panel">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                
+                <!-- Search Input -->
+                <div class="lg:col-span-2 relative">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5">
+                        <span class="lang-he">חיפוש חופשי</span>
+                        <span class="lang-en hidden">Free Search</span>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="searchInput" oninput="filterCommunities()" placeholder="חפש לפי שם יישוב, מועצה..." class="w-full pl-4 pr-10 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors">
+                        <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3.5 text-slate-500 text-sm"></i>
+                    </div>
+                </div>
+
+                <!-- Region Filter -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5">
+                        <span class="lang-he">מועצה אזורית</span>
+                        <span class="lang-en hidden">Regional Council</span>
+                    </label>
+                    <select id="councilFilter" onchange="filterCommunities()" class="w-full px-3 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors">
+                        <option value="all" class="lang-he">כל המועצות</option>
+                        <option value="misgav">משגב</option>
+                        <option value="jezreel">עמק יזרעאל</option>
+                        <option value="carmel">חוף הכרמל</option>
+                    </select>
+                </div>
+
+                <!-- Type Filter -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5">
+                        <span class="lang-he">סוג יישוב</span>
+                        <span class="lang-en hidden">Settlement Type</span>
+                    </label>
+                    <select id="typeFilter" onchange="filterCommunities()" class="w-full px-3 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors">
+                        <option value="all" class="lang-he">הכל</option>
+                        <option value="kibbutz">קיבוץ</option>
+                        <option value="moshav">מושב</option>
+                        <option value="community">יישוב קהילתי</option>
+                    </select>
+                </div>
+
+                <!-- Status Filter -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5">
+                        <span class="lang-he">סטטוס הגרלה</span>
+                        <span class="lang-en hidden">Lottery Status</span>
+                    </label>
+                    <select id="statusFilter" onchange="filterCommunities()" class="w-full px-3 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors">
+                        <option value="all" class="lang-he">כל הסטטוסים</option>
+                        <option value="open">הרשמה פתוחה</option>
+                        <option value="upcoming">בקרוב</option>
+                        <option value="closed">נסגר / בתהליך</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Pending Approval Notice (Visible only in Admin Mode) -->
+        <div id="adminNoticeBox" class="hidden mb-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
+                <span class="lang-he">אתה נמצא במצב מנהל. עדכונים חדשים שמשתמשים שלחו מופיעים עם תגית מיוחדת ואינם גלויים לציבור עד לאישורך.</span>
+                <span class="lang-en hidden">You are in Admin Mode. User-submitted updates require approval before going live.</span>
+            </div>
+        </div>
+
+        <!-- Communities Grid -->
+        <section id="communitiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Injection via JavaScript -->
+        </section>
+    </main>
+
+    <!-- Detailed View Modal -->
+    <div id="detailsModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-700/80 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="closeDetailsModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modalContent" class="p-6 sm:p-8">
+                <!-- Dynamic Injection -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Lottery / Update Modal -->
+    <div id="submitModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-700/80 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeSubmitModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h2 class="text-xl font-bold text-slate-100 mb-2">
+                <span class="lang-he">דיווח / עדכון על הגרלה חדשה</span>
+                <span class="lang-en hidden">Submit / Update Lottery Info</span>
+            </h2>
+            <p class="text-xs text-slate-400 mb-6">
+                <span class="lang-he">כל דיווח נבדק על ידי מנהל המערכת לפני הפרסום באתר.</span>
+                <span class="lang-en hidden">Submissions are reviewed by an admin prior to public listing.</span>
+            </p>
+
+            <form id="lotteryForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">שם היישוב</label>
+                    <input type="text" required class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-sm text-slate-100">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">מועצה אזורית</label>
+                        <select required class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-sm text-slate-100">
+                            <option value="misgav">משגב</option>
+                            <option value="jezreel">עמק יזרעאל</option>
+                            <option value="carmel">חוף הכרמל</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">סוג יישוב</label>
+                        <select required class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-sm text-slate-100">
+                            <option value="kibbutz">קיבוץ</option>
+                            <option value="moshav">מושב</option>
+                            <option value="community">יישוב קהילתי</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">מספר מגרשים / פרטי ההרחבה</label>
+                    <textarea required rows="3" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-sm text-slate-100"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-sm transition-colors">
+                    <span class="lang-he">שלח לאישור מנהל</span>
+                    <span class="lang-en hidden">Submit for Admin Review</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer with Disclosure Section -->
+    <footer class="mt-auto border-t border-slate-800 bg-slate-950 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pt-2 text-slate-400 text-xs sm:text-sm leading-relaxed max-w-4xl mx-auto text-center">
+                <h4 class="font-bold text-slate-200 mb-2 text-sm sm:text-base">
+                    <span class="lang-he">אודות המיזם וגילוי נאות</span>
+                    <span class="lang-en hidden">About & Disclosure</span>
+                </h4>
+                <p class="lang-he mb-3">
+                    האתר הוקם ביוזמה פרטית וללא מטרות רווח על ידי תושבי מושבים וקיבוצים, מתוך התמודדות אישית עם היעדר שקיפות, פערי מידע משמעותיים, חוסר בהירות בלוחות הזמנים ומורכבות בהקצאת המגרשים בהרחבות ובהגרלות הבנייה במגזר הכפרי.
+                </p>
+                <p class="lang-he mb-4">
+                    אנו מאמינים כי החלטה על רכישת מגרש, קליטה ליישוב ובניית בית היא ההחלטה הכלכלית והאישית המשמעותית והחשובה ביותר בחייהם של זוגות צעירים ומשפחות בישראל. מטרת האתר היא להנגיש מידע מקיף, מהימן ושקוף על יישובים, קהילתיות, מוסדות חינוך, הגרלות ותנאי סף – כדי לאפשר לכל משפחה לקבל את ההחלטה הנכונה והטובה ביותר עבור עתידה.
+                </p>
+                <p class="lang-en hidden mb-3">
+                    This non-profit platform was founded by members of kibbutzim and moshavim to address the severe lack of transparency, information gaps, unclear timelines, and complexities surrounding housing lotteries and plot allocations in rural communities across Israel.
+                </p>
+                <p class="lang-en hidden mb-4">
+                    We strongly believe that applying for community intake and building a home is the most significant financial and personal decision young couples and families will make in their lifetime. Our goal is to provide accessible, reliable, and transparent information regarding communities, education systems, local lotteries, and eligibility criteria—empowering families to make informed decisions about their future.
+                </p>
+                <p class="text-slate-500 text-xs border-t border-slate-800/80 pt-4">
+                    * המידע באתר מבוסס על נתונים ציבוריים, דיווחי תושבים ועדכוני קהילה, ואינו מהווה תחליף לבדיקה רשמית מול המועצות האזוריות, רשות מקרקעי ישראל או הנהלות היישובים.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Script -->
+    <script>
+        // Database
+        const initialCommunities = [
+            {
+                id: '1',
+                name: 'יוקנעם המושבה',
+                council: 'jezreel',
+                councilName: 'עמק יזרעאל',
+                type: 'moshav',
+                typeName: 'מושב',
+                status: 'open',
+                statusText: 'הרשמה פתוחה',
+                plotsCount: 24,
+                approved: true,
+                religiousAffiliation: 'mixed',
+                votingPattern: 'מרכז-שמאל (ליברלי)',
+                socioEconomic: '8/10',
+                religiousBreakdown: 'חילוני עם מעט מסורתי (75% חילוני, 25% דתי/מסורתי)',
+                education: 'גני ילדים ביישוב. יסודי: "שגיא" (שריד). תיכון: "עמקים תבור" (מזרע). הסעות מוסדרות.',
+                culture: 'בית עם, חוגי ספורט ומוזיקה, אירועי חג קהילתיים מרכזיים.',
+                nature: 'נחל שופט, פארק רמות מנשה, שבילי אופניים ביער הזורע.',
+                weather: 'ים-תיכוני, משקעים 650 מ"מ בשנה, קייצים חמים וחורף ממוזג.',
+                security: 'מצב יציב, כיתת כוננות פעילה. מעט מאוד אזעקות בשנה.',
+                personalSafety: 'גבוהה ביותר. יישוב שקט וקהילתי.',
+                sports: 'קבוצות אופני שטח, ריצה קהילתית, מגרשי טניס וספורטק.',
+                airQuality: 'מעולה, הגנה על הטבע סביב פארק ביוספרי רמות מנשה.',
+                communityEngagement: 'מעורבות גבוהה מאוד, ועדת תרבות ונוער פעילות מאוד.'
+            },
+            {
+                id: '2',
+                name: 'עצמון שגב',
+                council: 'misgav',
+                councilName: 'משגב',
+                type: 'community',
+                typeName: 'יישוב קהילתי',
+                status: 'open',
+                statusText: 'הרשמה פתוחה',
+                plotsCount: 18,
+                approved: true,
+                religiousAffiliation: 'secular',
+                votingPattern: 'מרכז-שמאל',
+                socioEconomic: '9/10',
+                religiousBreakdown: 'חילוני (90% חילוני)',
+                education: 'גנים מ-0 עד 6 ביישוב. יסודי: "משגב". תיכון: "מקיף משגב" (מתחם המועצה).',
+                culture: 'מועדון לחבר, מופעי מוזיקה מקומיים, ספריה יישוביית.',
+                nature: 'רכס יודפת, הר שכניה, מכתש יודפת.',
+                weather: 'הררי גלילי, 700 מ"מ גשם, לילות קרים בקיץ.',
+                security: 'שקט ומוגן, מרחבים מוגנים בכל בית חדש.',
+                personalSafety: 'גבוהה מאוד.',
+                sports: 'מרכז ספורט משגב (בריכה אולימפית), קבוצות טריאתלון וריצה.',
+                airQuality: 'נקי וצלול מאוד, שמורות טבע גליליות מקיפות.',
+                communityEngagement: 'קהילה חזקה, ערבות הדדית וועדות מתנדבים.'
+            },
+            {
+                id: '3',
+                name: 'כרם מהר"ל',
+                council: 'carmel',
+                councilName: 'חוף הכרמל',
+                type: 'moshav',
+                typeName: 'מושב',
+                status: 'upcoming',
+                statusText: 'בקרוב',
+                plotsCount: 30,
+                approved: true,
+                religiousAffiliation: 'secular',
+                votingPattern: 'ליברלי-מרכז',
+                socioEconomic: '8/10',
+                religiousBreakdown: 'חילוני בעיקרו',
+                education: 'פעוטונים במושב. יסודי: "מעיין" (עין הוד). תיכון: "משותף חוף הכרמל" (מעגן מיכאל).',
+                culture: 'אמנות מקומית, אירועי יקב, בית עם היסטורי.',
+                nature: 'עמק מהר"ל, הר ערקן, שמורת הכרמל.',
+                weather: 'אקלים כרמלי, 600 מ"מ משקעים, בריזה ימית.',
+                security: 'אזור שקט, אבטחה היקפית מוסדרת.',
+                personalSafety: 'גבוהה.',
+                sports: 'מועדון רכיבה על סוסים, אופני הרים, גלישה בחוף הבונים הסמוך.',
+                airQuality: 'איכות אוויר מעולה, צמוד לשמורת הכרמל המוכרזת.',
+                communityEngagement: 'מעורבות גבוהה בנושאי איכות סביבה ושימור.'
+            },
+            {
+                id: '4',
+                name: 'יודפת',
+                council: 'misgav',
+                councilName: 'משגב',
+                type: 'kibbutz',
+                typeName: 'קיבוץ',
+                status: 'open',
+                statusText: 'הרשמה פתוחה',
+                plotsCount: 12,
+                approved: true,
+                religiousAffiliation: 'secular',
+                votingPattern: 'שמאל-מרכז',
+                socioEconomic: '9/10',
+                religiousBreakdown: 'חילוני',
+                education: 'חינוך אנתרופוסופי מובנה מ-0 עד 18 (בית ספר "עודד").',
+                culture: 'מתחם יודפת (יקבים, ירידים), תרבות אורגנית וחיבור לטבע.',
+                nature: 'יודפת העתיקה, הר עצמון, יער קופים.',
+                weather: 'קריר יחסית, 720 מ"מ גשם בשנה.',
+                security: 'שקט מוחלט.',
+                personalSafety: 'גבוהה ביותר.',
+                sports: 'יוגה, פילאטיס, הליכה נורדית ושבילי ריצה.',
+                airQuality: 'ללא זיהום תעשייתי, שמורות טבע מוכרזות.',
+                communityEngagement: 'קהילתיות עמוקה מאוד, אסיפות חברים פעילות.'
+            },
+            {
+                id: '5',
+                name: 'תל עדשים',
+                council: 'jezreel',
+                councilName: 'עמק יזרעאל',
+                type: 'moshav',
+                typeName: 'מושב',
+                status: 'closed',
+                statusText: 'בתהליך קליטה',
+                plotsCount: 15,
+                approved: true,
+                religiousAffiliation: 'mixed',
+                votingPattern: 'מגוון (מרכז-ימין)',
+                socioEconomic: '7/10',
+                religiousBreakdown: 'מעורב (חילוני ומסורתי)',
+                education: 'גני ילדים במושב. יסודי: "אופקים" (מרחביה). תיכון: "עמקים תבור".',
+                culture: 'בית עם מרכזי, מועדון נוער תוסס, חגיגות שבועות מסורתיות.',
+                nature: 'שדות העמק, הר תבור הסמוך, נחל עדשים.',
+                weather: 'חם בקיץ, 500 מ"מ משקעים בחורף.',
+                security: 'שגרה מלאה, מרכיבי ביטחון מועצתיים.',
+                personalSafety: 'גבוהה.',
+                sports: 'כדורסל, ענפי ספורט מים בבריכה האזורית.',
+                airQuality: 'אוויר כפרי, השפעת חקלאות מקומית.',
+                communityEngagement: 'מסורת קהילתית ותיקה וחיבור לקרקע.'
+            },
+            {
+                id: '6',
+                name: 'ניר עציון',
+                council: 'carmel',
+                councilName: 'חוף הכרמל',
+                type: 'moshav',
+                typeName: 'מושב שיתופי',
+                status: 'open',
+                statusText: 'הרשמה פתוחה',
+                plotsCount: 20,
+                approved: false, // Pending Admin Approval Demo
+                religiousAffiliation: 'religious',
+                votingPattern: 'ציונות דתית / ימין רך',
+                socioEconomic: '8/10',
+                religiousBreakdown: 'דתי לאומי (100%)',
+                education: 'מעונות וגנים דתיים במושב. יסודי: "נר עציון". תיכון: ישיבות ואולפנות באזור.',
+                culture: 'שיעורי תורה, אירועי שבת משותפים, בית כנסת מרכזי תוסס.',
+                nature: 'יער ניר עציון, נחל אורן, מורדות הכרמל.',
+                weather: 'נעים, 620 מ"מ גשם בשנה.',
+                security: 'אזור בטוח.',
+                personalSafety: 'גבוהה מאוד.',
+                sports: 'מגרש כדורגל, קבוצות ריצה נפרדות, טיולי משפחות.',
+                airQuality: 'נקי מאוד.',
+                communityEngagement: 'עזרה הדדית וקהילה דתית מגובשת.'
+            }
+        ];
+
+        let state = {
+            communities: JSON.parse(localStorage.getItem('kibbutz_data')) || initialCommunities,
+            currentLang: 'he',
+            isAdmin: false
+        };
+
+        function saveToStorage() {
+            localStorage.setItem('kibbutz_data', JSON.stringify(state.communities));
+        }
+
+        // Render Functions
+        function renderGrid() {
+            const grid = document.getElementById('communitiesGrid');
+            grid.innerHTML = '';
+
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const councilVal = document.getElementById('councilFilter').value;
+            const typeVal = document.getElementById('typeFilter').value;
+            const statusVal = document.getElementById('statusFilter').value;
+
+            const filtered = state.communities.filter(c => {
+                // If not admin, only show approved ones
+                if (!state.isAdmin && !c.approved) return false;
+
+                const matchesSearch = c.name.toLowerCase().includes(searchVal) || c.councilName.includes(searchVal);
+                const matchesCouncil = councilVal === 'all' || c.council === councilVal;
+                const matchesType = typeVal === 'all' || c.type === typeVal;
+                const matchesStatus = statusVal === 'all' || c.status === statusVal;
+
+                return matchesSearch && matchesCouncil && matchesType && matchesStatus;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-500">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                        <p class="lang-he">לא נמצאו יישובים התואמים את הסינון.</p>
+                        <p class="lang-en hidden">No communities match your filter criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(c => {
+                const card = document.createElement('div');
+                card.className = `rounded-2xl glass-panel p-6 flex flex-col justify-between border transition-all duration-300 hover:border-emerald-500/50 ${!c.approved ? 'border-amber-500/50 bg-amber-950/10' : 'border-slate-800'}`;
+                
+                let statusBg = c.status === 'open' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 
+                              (c.status === 'upcoming' ? 'bg-amber-500/10 text-amber-400 border-amber-500/30' : 'bg-slate-800 text-slate-400 border-slate-700');
+
+                card.innerHTML = `
+                    <div>
+                        ${!c.approved ? `
+                            <div class="mb-3 px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold flex items-center justify-between">
+                                <span><i class="fa-solid fa-clock ml-1"></i> ממתין לאישור מנהל</span>
+                                <div class="flex gap-1">
+                                    <button onclick="approveCommunity('${c.id}')" class="px-2 py-0.5 bg-emerald-500 text-slate-950 text-xs font-bold rounded">אשר</button>
+                                    <button onclick="rejectCommunity('${c.id}')" class="px-2 py-0.5 bg-red-500 text-white text-xs font-bold rounded">דחה</button>
+                                </div>
+                            </div>
+                        ` : ''}
+                        
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">${c.councilName}</span>
+                                <h3 class="text-xl font-bold text-slate-100">${c.name}</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold border ${statusBg}">
+                                ${c.statusText}
+                            </span>
+                        </div>
+
+                        <div class="space-y-2 mb-6 text-xs text-slate-300">
+                            <div class="flex justify-between py-1 border-b border-slate-800">
+                                <span class="text-slate-400"><span class="lang-he">סוג יישוב</span><span class="lang-en hidden">Type</span>:</span>
+                                <span class="font-medium">${c.typeName}</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-slate-800">
+                                <span class="text-slate-400"><span class="lang-he">כמות מגרשים בהרחבה</span><span class="lang-en hidden">Plot Count</span>:</span>
+                                <span class="font-medium text-emerald-400">${c.plotsCount} מגרשים</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-slate-800">
+                                <span class="text-slate-400"><span class="lang-he">אשכול סוציו-אקונומי</span><span class="lang-en hidden">Socio-Economic</span>:</span>
+                                <span class="font-medium">${c.socioEconomic}</span>
+                            </div>
+                            <div class="flex justify-between py-1">
+                                <span class="text-slate-400"><span class="lang-he">פילוח דתי</span><span class="lang-en hidden">Religious Focus</span>:</span>
+                                <span class="font-medium">${c.religiousBreakdown}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openDetailsModal('${c.id}')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span class="lang-he">צפה ב-12 פרמטרי הקהילה</span>
+                        <span class="lang-en hidden">View All 12 Parameters</span>
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+
+            applyLanguageUI();
+        }
+
+        // Modal Handlers
+        function openDetailsModal(id) {
+            const c = state.communities.find(item => item.id === id);
+            if (!c) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="border-b border-slate-800 pb-4 mb-6">
+                    <span class="text-xs font-semibold text-emerald-400">${c.councilName} • ${c.typeName}</span>
+                    <h2 class="text-2xl font-bold text-slate-100 mt-1">${c.name}</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-300">
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-vote-yea ml-1"></i> <span class="lang-he">1. דפוס הצבעה</span><span class="lang-en hidden">1. Voting Pattern</span></h4>
+                        <p class="text-xs">${c.votingPattern}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-chart-line ml-1"></i> <span class="lang-he">2. סטטוס סוציו-אקונומי</span><span class="lang-en hidden">2. Socio-Economic Status</span></h4>
+                        <p class="text-xs">${c.socioEconomic}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-synagogue ml-1"></i> <span class="lang-he">3. פילוח דתי</span><span class="lang-en hidden">3. Religious Breakdown</span></h4>
+                        <p class="text-xs">${c.religiousBreakdown}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-graduation-cap ml-1"></i> <span class="lang-he">4. חינוך מ-0 עד 18</span><span class="lang-en hidden">4. Education (0-18)</span></h4>
+                        <p class="text-xs">${c.education}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-masks-theater ml-1"></i> <span class="lang-he">5. מקומות תרבות</span><span class="lang-en hidden">5. Cultural Centers</span></h4>
+                        <p class="text-xs">${c.culture}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-tree ml-1"></i> <span class="lang-he">6. אתרי טבע עיקריים</span><span class="lang-en hidden">6. Primary Nature Sites</span></h4>
+                        <p class="text-xs">${c.nature}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-cloud-sun-rain ml-1"></i> <span class="lang-he">7. מזג אוויר ומשקעים</span><span class="lang-en hidden">7. Climate & Rainfall</span></h4>
+                        <p class="text-xs">${c.weather}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-shield-halved ml-1"></i> <span class="lang-he">8. מצב ביטחוני ואזעקות</span><span class="lang-en hidden">8. Security Status</span></h4>
+                        <p class="text-xs">${c.security}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-user-shield ml-1"></i> <span class="lang-he">9. ביטחון אישי</span><span class="lang-en hidden">9. Personal Safety</span></h4>
+                        <p class="text-xs">${c.personalSafety}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-football ml-1"></i> <span class="lang-he">10. ספורט וקבוצות ספורט</span><span class="lang-en hidden">10. Sports & Teams</span></h4>
+                        <p class="text-xs">${c.sports}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-wind ml-1"></i> <span class="lang-he">11. זיהום אוויר והגנה על הטבע</span><span class="lang-en hidden">11. Air Quality & Nature Protection</span></h4>
+                        <p class="text-xs">${c.airQuality}</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <h4 class="font-bold text-emerald-400 mb-2 text-xs uppercase"><i class="fa-solid fa-users ml-1"></i> <span class="lang-he">12. מידת מעורבות קהילתית</span><span class="lang-en hidden">12. Community Engagement</span></h4>
+                        <p class="text-xs">${c.communityEngagement}</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('detailsModal').classList.remove('hidden');
+            applyLanguageUI();
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').classList.add('hidden');
+        }
+
+        function openSubmitModal() {
+            document.getElementById('submitModal').classList.remove('hidden');
+        }
+
+        function closeSubmitModal() {
+            document.getElementById('submitModal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert(state.currentLang === 'he' ? 'הדיווח נשלח בהצלחה וממתין לאישור מנהל המערכת.' : 'Submitted successfully! Awaiting admin review.');
+            closeSubmitModal();
+        }
+
+        // Admin Actions
+        function toggleAdminMode() {
+            state.isAdmin = !state.isAdmin;
+            const btnHe = document.getElementById('adminBtnText');
+            const btnEn = document.getElementById('adminBtnTextEn');
+            const noticeBox = document.getElementById('adminNoticeBox');
+
+            if (state.isAdmin) {
+                btnHe.innerText = 'מצב מנהל (פעיל)';
+                btnEn.innerText = 'Admin Mode (On)';
+                noticeBox.classList.remove('hidden');
+            } else {
+                btnHe.innerText = 'מצב מנהל (כבוי)';
+                btnEn.innerText = 'Admin Mode (Off)';
+                noticeBox.classList.add('hidden');
+            }
+            renderGrid();
+        }
+
+        function approveCommunity(id) {
+            const item = state.communities.find(c => c.id === id);
+            if (item) {
+                item.approved = true;
+                saveToStorage();
+                renderGrid();
+            }
+        }
+
+        function rejectCommunity(id) {
+            state.communities = state.communities.filter(c => c.id !== id);
+            saveToStorage();
+            renderGrid();
+        }
+
+        // Language Toggle Logic
+        function toggleLanguage() {
+            state.currentLang = state.currentLang === 'he' ? 'en' : 'he';
+            document.documentElement.dir = state.currentLang === 'he' ? 'rtl' : 'ltr';
+            document.getElementById('langSwitchLabel').innerText = state.currentLang === 'he' ? 'EN' : 'HE';
+            applyLanguageUI();
+        }
+
+        function applyLanguageUI() {
+            const isHe = state.currentLang === 'he';
+            document.querySelectorAll('.lang-he').forEach(el => {
+                if (isHe) el.classList.remove('hidden'); else el.classList.add('hidden');
+            });
+            document.querySelectorAll('.lang-en').forEach(el => {
+                if (!isHe) el.classList.remove('hidden'); else el.classList.add('hidden');
+            });
+        }
+
+        function filterCommunities() {
+            renderGrid();
+        }
+
+        // Initialize
+        renderGrid();
+    </script>
+</body>
+</html>
